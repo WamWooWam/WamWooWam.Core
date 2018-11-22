@@ -7,12 +7,13 @@ namespace WamWooWam.Core
 {
     public static class Strings
     {
-        const string randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+        const string RANDOM_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+        internal static char[] _quotes = new[] { '"', '”', '“' };
 
         public static string RandomString(int length)
         {
             Random random = new Random();
-            return new string(Enumerable.Repeat(randomChars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+            return new string(Enumerable.Repeat(RANDOM_CHARS, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         public static string NaturalJoin(IEnumerable<string> strings, string separator = ",", string and = "&")
@@ -25,22 +26,19 @@ namespace WamWooWam.Core
             }
             else
             {
-                result = string.Format("{0} {1} {2}"
-                    , string.Join(separator + " ", strings.Take(count - 1).ToArray())
-                    , and
-                    , strings.Last());
+                result = $"{string.Join(separator + " ", strings.Take(count - 1))} {and} {strings.Last()}";
             }
 
             return result;
         }
 
-        public static IEnumerable<string> SplitCommandLine(string commandLine)
+        public static IEnumerable<string> SplitCommandLine(this string commandLine)
         {
             bool inQuotes = false;
 
             return commandLine.Split((b, c, a) =>
             {
-                if (StringExtensions._quotes.Contains(c) && b != '\\')
+                if (_quotes.Contains(c) && b != '\\')
                 {
                     inQuotes = !inQuotes;
                 }
@@ -48,11 +46,6 @@ namespace WamWooWam.Core
                 return !inQuotes && c == ' ';
             }).Select(arg => arg.Trim().TrimMatchingQuotes());
         }
-    }
-
-    public static class StringExtensions
-    {
-        internal static char[] _quotes = new[] { '"', '”', '“' };
 
         public static string Truncate(this string value, int maxLength)
         {

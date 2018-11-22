@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WamWooWam.Core
-{  
-
+{
+    [Obsolete("A treasure trove of bad ideas")]
     public static class ConsolePlus
     {
         public static bool Debug { private get; set; }
@@ -39,13 +36,13 @@ namespace WamWooWam.Core
         /// <summary>
         /// Writes text only if debug is enabled
         /// </summary>
-        /// <param name="Source">A short (4 char) string detailing the output's source</param>
-        /// <param name="Text">The text to be writen</param>
-        public static void WriteDebug(string Source, string Text, ConsoleColor Colour = ConsoleColor.Cyan)
+        /// <param name="source">A short (4 char) string detailing the output's source</param>
+        /// <param name="text">The text to be writen</param>
+        public static void WriteDebug(string source, string text, ConsoleColor colour = ConsoleColor.Cyan)
         {
             if (Debug)
             {
-                WriteLine($"{Source}: {Text}", Colour);
+                WriteLine($"{source}: {text}", colour);
             }
         }
 

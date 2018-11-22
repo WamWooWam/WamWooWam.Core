@@ -49,7 +49,7 @@ namespace WamWooWam.Core
         {
             if (currentWidth <= maxWidth && currentHeight <= maxHeight)
             {
-                return ;
+                return;
             }
             else
             {
@@ -58,8 +58,43 @@ namespace WamWooWam.Core
                 double ratio = Math.Min(ratioX, ratioY);
 
                 currentWidth = (int)(currentWidth * ratio);
-                currentHeight  = (int)(currentHeight * ratio);
+                currentHeight = (int)(currentHeight * ratio);
             }
+        }
+
+        public static void Scale(ref int width, ref int height, int maxWidth, int maxHeight, StretchMode mode = StretchMode.Uniform)
+        {
+            if (mode == StretchMode.None)
+                return;
+
+            if (mode == StretchMode.Fill)
+            {
+                width = maxWidth;
+                height = maxHeight;
+                return;
+            }
+
+            double ratioX = (double)maxWidth / width;
+            double ratioY = (double)maxHeight / height;
+            double ratio = 0;
+
+            if (mode == StretchMode.Uniform)
+            {
+                ratio = Math.Min(ratioX, ratioY);
+            }
+
+            if (mode == StretchMode.UniformToFill)
+            {
+                ratio = Math.Max(ratioX, ratioY);
+            }
+
+            width = (int)(width * ratio);
+            height = (int)(height * ratio);
+        }
+
+        public enum StretchMode
+        {
+            None, Fill, Uniform, UniformToFill
         }
     }
 }

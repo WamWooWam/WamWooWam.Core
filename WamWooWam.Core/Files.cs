@@ -106,39 +106,6 @@ namespace WamWooWam.Core
 #if !NET35 && !NET40
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dir"></param>
-        /// <returns></returns>
-        [Obsolete("This was a retarded idea and is entirely pointless. It has literally zero benifits. More than likely slower. Use sync instead, if you're really fucked use Task.Factory.StartNew")]
-        public static async Task<long> SizeDirectoryAsync(string dir)
-        {
-            Console.WriteLine($@"Getting size of directory ""{dir}""");
-            long DirSize = 0;
-            try
-            {
-                foreach (string file in Directory.EnumerateFiles(dir))
-                {
-                    await Task.Factory.StartNew(() =>
-                    {
-                        try
-                        {
-                            FileInfo info = new FileInfo(file);
-                            DirSize += info.Length;
-                        }
-                        catch { Console.WriteLine($@"Unable to access file ""{file}"""); }
-                    });
-                }
-                foreach (string subDir in Directory.EnumerateDirectories(dir))
-                {
-                    DirSize += await SizeDirectoryAsync(subDir);
-                }
-            }
-            catch { Console.WriteLine($@"Unable to enumerate files in ""{dir}"""); }
-            return DirSize;
-        }
-
-        /// <summary>
         /// Gets the size of a directory in bytes, with a periodic callback to a task.
         /// </summary>
         /// <param name="dir">The directory to size</param>
