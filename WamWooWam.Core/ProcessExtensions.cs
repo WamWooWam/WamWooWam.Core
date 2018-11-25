@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WamWooWam.Core
 {
-#if !NETSTANDARD1_6 && !NET40
+#if !NETSTANDARD1_6 && !NET40 && !NETSTANDARD1_4
     public static class ProcessExtensions
     {
         public static async Task<string> RunAndGetStdoutAsync(this ProcessStartInfo proc)

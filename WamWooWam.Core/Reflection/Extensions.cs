@@ -11,7 +11,7 @@ namespace WamWooWam.Core.Reflection
 {
     public static class Extensions
     {
-#if !NETSTANDARD1_6
+#if !NETSTANDARD1_6 && !NETSTANDARD1_4
         private static Dictionary<Type, string> _typeKeywords = new Dictionary<Type, string>()
         {
             { typeof(bool), "bool" },

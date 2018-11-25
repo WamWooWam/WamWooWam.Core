@@ -19,6 +19,9 @@ namespace WamWooWam.Core
         private static Lazy<JSchemaGenerator> _schemaGenerator = new Lazy<JSchemaGenerator>(() => new JSchemaGenerator());
         private static Lazy<string> _settingsDirectoryLazy = new Lazy<string>(() =>
         {
+#if NETSTANDARD1_4
+            return Directory.GetCurrentDirectory();
+#else
             var assembly = Assembly.GetEntryAssembly();
             var name = assembly.GetName().Name;
             string dir;
@@ -30,6 +33,7 @@ namespace WamWooWam.Core
 #endif
 
             return dir;
+#endif
         });
 
         public static bool AutoSave { get; set; } = true;
