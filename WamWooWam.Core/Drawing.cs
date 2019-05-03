@@ -62,10 +62,12 @@ namespace WamWooWam.Core
             }
         }
 
-        public static void Scale(ref int width, ref int height, int maxWidth, int maxHeight, StretchMode mode = StretchMode.Uniform)
+        public static void Scale(ref double width, ref double height, double maxWidth, double maxHeight, StretchMode mode = StretchMode.Uniform)
         {
             if (mode == StretchMode.None)
+            {
                 return;
+            }
 
             if (mode == StretchMode.Fill)
             {

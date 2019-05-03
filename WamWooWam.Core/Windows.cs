@@ -154,8 +154,8 @@ namespace WamWooWam.Core.Windows
             private int width;
             private int height;
 
-            public int Width { set { width = value; } }
-            public int Height { set { height = value; } }
+            public int Width { set => width = value; }
+            public int Height { set => height = value; }
         };
 
         [StructLayout(LayoutKind.Sequential)]

@@ -57,6 +57,16 @@ namespace WamWooWam.Core
             return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
 
+        public static string Truncate(this string value, int maxLength, string elipsis)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength - elipsis.Length) + elipsis;
+        }
+
         public static string Replace(this string orig, string[] find, string[] replace)
         {
             for (int i = 0; i <= find.Length - 1; i++)

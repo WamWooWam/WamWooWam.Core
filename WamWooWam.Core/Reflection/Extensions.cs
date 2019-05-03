@@ -47,12 +47,18 @@ namespace WamWooWam.Core.Reflection
             }
 
             if (method.IsPublic)
+            {
                 builder.Append("public ");
+            }
             else if (method.IsPrivate)
+            {
                 builder.Append("private ");
+            }
 
             if (method.IsStatic)
+            {
                 builder.Append("static ");
+            }
 
             // thx uwx bb
             var basedef = method.GetBaseDefinition();
@@ -67,7 +73,9 @@ namespace WamWooWam.Core.Reflection
             }
 
             if (method.GetCustomAttribute<AsyncStateMachineAttribute>() != null)
+            {
                 builder.Append("async ");
+            }
 
             builder.Append(PrettyTypeName(method.ReturnType));
             builder.Append(" ");
@@ -91,9 +99,13 @@ namespace WamWooWam.Core.Reflection
             if (method.IsGenericMethod)
             {
                 if (method.Name.Contains("`"))
+                {
                     builder.Append(method.Name.Substring(0, method.Name.LastIndexOf("`", StringComparison.InvariantCulture)));
+                }
                 else
+                {
                     builder.Append(method.Name);
+                }
 
                 builder.Append("<");
                 builder.Append(string.Join(", ", method.GetGenericArguments().Select(a => PrettyTypeName(a))));

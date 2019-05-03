@@ -27,7 +27,9 @@ namespace WamWooWam.Core
             if (time.Seconds > 0)
             {
                 if (time.Minutes > 0 || time.Hours > 0)
+                {
                     builder.Append("and ");
+                }
 
                 builder.Append($"{time.Seconds} {(time.Seconds == 1 ? "second" : "seconds")}");
             }
