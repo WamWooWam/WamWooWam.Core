@@ -1,4 +1,4 @@
-﻿#if NET35 || NET40 || NET45 || NET462 || NETSTANDARD2_0
+﻿#if NET35 || NET40 || NET45 || NET462
 
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace WamWooWam.Core
     public static class Drawing
     {
 
-#if NET35 || NET40 || NET45 || NET462 || NETSTANDARD2_0
+#if NET35 || NET40 || NET45 || NET462
         public static Image ResizeImage(Image image, Size size, bool preserveAspectRatio = true)
         {
             int newWidth;

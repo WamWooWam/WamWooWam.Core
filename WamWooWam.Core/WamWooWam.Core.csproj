@@ -7,13 +7,6 @@
     <Platforms>AnyCPU;x86;x64</Platforms>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="CoreCompat.System.Drawing.v2">
-      <Version>5.2.0-preview1-r131</Version>
-    </PackageReference>
-  </ItemGroup>
-  
-
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netstandard1.6' AND '$(TargetFramework)' != 'netstandard1.4'">
     <Reference Include="PresentationCore.dll" />
     <Reference Include="PresentationFramework.dll" />
