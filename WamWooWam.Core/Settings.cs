@@ -57,7 +57,7 @@ namespace WamWooWam.Core
             }
             else if (_rawSettings.TryGetValue(name, out var j))
             {
-                JSchema schema = GetSchemaForType<T>();
+                var schema = GetSchemaForType<T>();
 
                 if (j.IsValid(schema))
                 {
@@ -124,7 +124,7 @@ namespace WamWooWam.Core
             }
             else if (_rawSettings.TryGetValue(name, out var j))
             {
-                JSchema schema = GetSchemaForType<T>();
+                var schema = GetSchemaForType<T>();
 
                 if (j.IsValid(schema))
                 {

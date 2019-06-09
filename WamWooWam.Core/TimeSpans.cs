@@ -8,7 +8,7 @@ namespace WamWooWam.Core
     {
         public static string ToNaturalString(this TimeSpan time)
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             if (time.Days > 0)
             {
                 builder.Append($"{time.Days} {(time.Days == 1 ? "day" : "days")} ");

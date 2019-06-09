@@ -14,7 +14,7 @@ namespace WamWooWam.Core
         /// <param name="colour">The colour that text should be</param>
         public static void Write(string text, ConsoleColor colour = ConsoleColor.White)
         {
-            ConsoleColor OrigColour = Console.ForegroundColor;
+            var OrigColour = Console.ForegroundColor;
             Console.ForegroundColor = colour;
             Console.Write(" " + text);
             Console.ForegroundColor = OrigColour;
@@ -27,7 +27,7 @@ namespace WamWooWam.Core
         /// <param name="colour">The colour that text should be</param>
         public static void WriteLine(string text, ConsoleColor colour = ConsoleColor.White)
         {
-            ConsoleColor OrigColour = Console.ForegroundColor;
+            var OrigColour = Console.ForegroundColor;
             Console.ForegroundColor = colour;
             Console.WriteLine(" " + text);
             Console.ForegroundColor = OrigColour;
@@ -69,7 +69,7 @@ namespace WamWooWam.Core
         /// <param name="colour">The colour the heading should be (defaults to yellow)</param>
         public static void WriteHeading(string HeadingText, bool NewLine = true, ConsoleColor colour = ConsoleColor.Yellow)
         {
-            ConsoleColor OrigColour = Console.ForegroundColor;
+            var OrigColour = Console.ForegroundColor;
             Console.ForegroundColor = colour;
             Console.WriteLine();
             Console.WriteLine($" --- {HeadingText} --- ");
@@ -94,7 +94,7 @@ namespace WamWooWam.Core
         /// <param name="colour">The colour the heading should be (defaults to yellow)</param>
         public static void WriteSubHeading(string HeadingText, string SubHeading = null, bool NewLine = true, ConsoleColor colour = ConsoleColor.Yellow)
         {
-            ConsoleColor OrigColour = Console.ForegroundColor;
+            var OrigColour = Console.ForegroundColor;
             Console.ForegroundColor = colour;
             Console.WriteLine();
             Console.WriteLine($"  -- {HeadingText} --  ");
@@ -113,7 +113,7 @@ namespace WamWooWam.Core
 
         public static void WriteHeading(string HeadingText, string SubHeading, bool NewLine = true, ConsoleColor colour = ConsoleColor.Yellow)
         {
-            ConsoleColor OrigColour = Console.ForegroundColor;
+            var OrigColour = Console.ForegroundColor;
             Console.WriteLine();
             Console.ForegroundColor = colour;
             Console.WriteLine($" --- {HeadingText} --- ");

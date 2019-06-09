@@ -12,14 +12,29 @@ namespace WamWooWam.Core
 
         public static string RandomString(int length)
         {
-            Random random = new Random();
+            var random = new Random();
             return new string(Enumerable.Repeat(RANDOM_CHARS, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        /// <summary>
+        /// Normalises a string. (e.g. "This is 'a string'" == "this-is-a-string")
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string Normalise(string str)
+        {
+            var lower = str.Trim()
+                .ToLowerInvariant()
+                .Where(x => char.IsLetterOrDigit(x) || char.IsWhiteSpace(x) || x == '-')
+                .Select(x => char.IsWhiteSpace(x) ? '-' : x)
+                .ToArray();
+            return new string(lower);
         }
 
         public static string NaturalJoin(IEnumerable<string> strings, string separator = ",", string and = "&")
         {
             string result;
-            int count = strings.Count();
+            var count = strings.Count();
             if (count <= 1)
             {
                 result = string.Join("", strings.ToArray());
@@ -34,7 +49,7 @@ namespace WamWooWam.Core
 
         public static IEnumerable<string> SplitCommandLine(this string commandLine)
         {
-            bool inQuotes = false;
+            var inQuotes = false;
 
             return commandLine.Split((b, c, a) =>
             {
@@ -69,7 +84,7 @@ namespace WamWooWam.Core
 
         public static string Replace(this string orig, string[] find, string[] replace)
         {
-            for (int i = 0; i <= find.Length - 1; i++)
+            for (var i = 0; i <= find.Length - 1; i++)
             {
                 orig = orig.Replace(find[i], replace[i]);
             }
@@ -78,7 +93,7 @@ namespace WamWooWam.Core
 
         public static string Replace(this string orig, string[] find, string replace)
         {
-            for (int i = 0; i <= find.Length - 1; i++)
+            for (var i = 0; i <= find.Length - 1; i++)
             {
                 orig = orig.Replace(find[i], replace);
             }
@@ -87,9 +102,9 @@ namespace WamWooWam.Core
 
         public static IEnumerable<string> Split(this string str, Func<char, bool> controller)
         {
-            int nextPiece = 0;
+            var nextPiece = 0;
 
-            for (int c = 0; c < str.Length; c++)
+            for (var c = 0; c < str.Length; c++)
             {
                 if (controller(str[c]))
                 {
@@ -103,11 +118,11 @@ namespace WamWooWam.Core
 
         public static IEnumerable<string> Split(this string str, Func<char, char, char, bool> controller)
         {
-            int nextPiece = 0;
+            var nextPiece = 0;
 
-            for (int c = 0; c < str.Length; c++)
+            for (var c = 0; c < str.Length; c++)
             {
-                if (controller(c > 0 ? str[c - 1] : default(char), str[c], c < str.Length - 1 ? str[c + 1] : default(char)))
+                if (controller(c > 0 ? str[c - 1] : default, str[c], c < str.Length - 1 ? str[c + 1] : default))
                 {
                     yield return str.Substring(nextPiece, c - nextPiece);
                     nextPiece = c + 1;

@@ -25,7 +25,7 @@ namespace WamWooWam.Core
         {
             try
             {
-                foreach (string file in Directory.GetFiles(directoryPath))
+                foreach (var file in Directory.GetFiles(directoryPath))
                 {
                     try
                     {
@@ -33,7 +33,7 @@ namespace WamWooWam.Core
                     }
                     catch { continue; }
                 }
-                foreach (string subDir in Directory.GetDirectories(directoryPath))
+                foreach (var subDir in Directory.GetDirectories(directoryPath))
                 {
                     RunRecursive(subDir, action);
                 }
@@ -51,8 +51,8 @@ namespace WamWooWam.Core
         {
             if (value < 0) { return "-" + SizeSuffix(-value); }
 
-            int i = 0;
-            decimal dValue = (decimal)value;
+            var i = 0;
+            var dValue = (decimal)value;
             while (Math.Round(dValue, decimalPlaces) >= 1024)
             {
                 dValue /= 1024;
@@ -68,16 +68,16 @@ namespace WamWooWam.Core
         /// <param name="dir">The directory to delete.</param>
         public static void DeleteDirectory(string dir)
         {
-            string[] files = Directory.GetFiles(dir);
-            string[] dirs = Directory.GetDirectories(dir);
+            var files = Directory.GetFiles(dir);
+            var dirs = Directory.GetDirectories(dir);
 
-            foreach (string file in files)
+            foreach (var file in files)
             {
                 File.SetAttributes(file, FileAttributes.Normal);
                 File.Delete(file);
             }
 
-            foreach (string subDir in dirs)
+            foreach (var subDir in dirs)
             {
                 DeleteDirectory(subDir);
             }
@@ -96,7 +96,7 @@ namespace WamWooWam.Core
 
             RunRecursive(dir, p =>
             {
-                FileInfo info = new FileInfo(p);
+                var info = new FileInfo(p);
                 dirSize += info.Length;
             });
 
@@ -113,15 +113,15 @@ namespace WamWooWam.Core
         /// <returns>The size in bytes of a directory.</returns>
         public static async Task<long> SizeDirectoryAsync(string dir, Func<long, Task> callback)
         {
-            DirectoryInfo info = new DirectoryInfo(dir);
+            var info = new DirectoryInfo(dir);
             long dirSize = 0;
 
             try
             {
                 var directories = info.GetDirectories();
-                for (int i = 0; i < directories.Length; i++)
+                for (var i = 0; i < directories.Length; i++)
                 {
-                    long oldSize = dirSize;
+                    var oldSize = dirSize;
                     dirSize = await InternalSizeDirectoryAsync(dirSize, directories[i], callback, true);
                     if ((dirSize - oldSize) > 100000)
                     {
@@ -135,7 +135,7 @@ namespace WamWooWam.Core
             {
                 try
                 {
-                    foreach (FileInfo file in info.EnumerateFiles())
+                    foreach (var file in info.EnumerateFiles())
                     {
                         try
                         {
@@ -157,9 +157,9 @@ namespace WamWooWam.Core
             try
             {
                 var directories = dir.GetDirectories();
-                for (int i = 0; i < directories.Length; i++)
+                for (var i = 0; i < directories.Length; i++)
                 {
-                    long oldSize = dirSize;
+                    var oldSize = dirSize;
                     dirSize = await InternalSizeDirectoryAsync(dirSize, directories[i], callback, false);
                     if ((dirSize - oldSize) > 100000)
                     {
@@ -173,7 +173,7 @@ namespace WamWooWam.Core
             {
                 try
                 {
-                    foreach (FileInfo file in dir.EnumerateFiles())
+                    foreach (var file in dir.EnumerateFiles())
                     {
                         try
                         {

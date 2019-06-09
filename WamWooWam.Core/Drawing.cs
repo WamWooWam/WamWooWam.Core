@@ -53,9 +53,9 @@ namespace WamWooWam.Core
             }
             else
             {
-                double ratioX = (double)maxWidth / currentWidth;
-                double ratioY = (double)maxHeight / currentHeight;
-                double ratio = Math.Min(ratioX, ratioY);
+                var ratioX = (double)maxWidth / currentWidth;
+                var ratioY = (double)maxHeight / currentHeight;
+                var ratio = Math.Min(ratioX, ratioY);
 
                 currentWidth = (int)(currentWidth * ratio);
                 currentHeight = (int)(currentHeight * ratio);
@@ -76,8 +76,8 @@ namespace WamWooWam.Core
                 return;
             }
 
-            double ratioX = (double)maxWidth / width;
-            double ratioY = (double)maxHeight / height;
+            var ratioX = (double)maxWidth / width;
+            var ratioY = (double)maxHeight / height;
             double ratio = 0;
 
             if (mode == StretchMode.Uniform)
