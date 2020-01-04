@@ -45,7 +45,7 @@ namespace WamWooWam.Core
         }
 #endif
 
-        public static void ScaleProportions(ref int currentWidth, ref int currentHeight, int maxWidth, int maxHeight)
+        public static void ScaleProportions(ref double currentWidth, ref double currentHeight, double maxWidth, double maxHeight)
         {
             if (currentWidth <= maxWidth && currentHeight <= maxHeight)
             {
@@ -53,8 +53,8 @@ namespace WamWooWam.Core
             }
             else
             {
-                var ratioX = (double)maxWidth / currentWidth;
-                var ratioY = (double)maxHeight / currentHeight;
+                var ratioX = maxWidth / currentWidth;
+                var ratioY = maxHeight / currentHeight;
                 var ratio = Math.Min(ratioX, ratioY);
 
                 currentWidth = (int)(currentWidth * ratio);
