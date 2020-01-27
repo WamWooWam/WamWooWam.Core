@@ -21,12 +21,11 @@ namespace WamWooWam.Core
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string Normalise(string str)
+        public static string Normalise(string str, char replaceChar = '-', bool changeCase = true)
         {
-            var lower = str.Trim()
-                .ToLowerInvariant()
-                .Where(x => char.IsLetterOrDigit(x) || char.IsWhiteSpace(x) || x == '-')
-                .Select(x => char.IsWhiteSpace(x) ? '-' : x)
+            var lower = (changeCase ? str.ToLowerInvariant() : str).Trim()
+                .Where(x => char.IsLetterOrDigit(x) || char.IsWhiteSpace(x) || x == replaceChar)
+                .Select(x => char.IsWhiteSpace(x) ? replaceChar : x)
                 .ToArray();
             return new string(lower);
         }
