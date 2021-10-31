@@ -57,8 +57,8 @@ namespace WamWooWam.Core
                 var ratioY = maxHeight / currentHeight;
                 var ratio = Math.Min(ratioX, ratioY);
 
-                currentWidth = (int)(currentWidth * ratio);
-                currentHeight = (int)(currentHeight * ratio);
+                currentWidth = (currentWidth * ratio);
+                currentHeight = (currentHeight * ratio);
             }
         }
 
